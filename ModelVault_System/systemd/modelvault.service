@@ -1,0 +1,50 @@
+[Unit]
+Description=ModelVault AI Inference Service
+Documentation=https://github.com/modelvault/docs
+After=network.target docker.service
+Wants=docker.service
+
+[Service]
+Type=forking
+User=modelvault
+Group=modelvault
+WorkingDirectory=/opt/modelvault
+Environment="PATH=/usr/local/bin:/usr/bin:/bin"
+Environment="MODEL_NAME=vaultmodel-llama-7b"
+Environment="LOG_LEVEL=INFO"
+
+# Pre-start checks
+ExecStartPre=/bin/bash -c 'if ! command -v docker &> /dev/null; then echo "Docker not installed"; exit 1; fi'
+ExecStartPre=/bin/bash -c 'if ! docker info &> /dev/null; then echo "Docker daemon not running"; exit 1; fi'
+ExecStartPre=/opt/modelvault/src/diagnose.sh
+
+# Main service startup
+ExecStart=/opt/modelvault/vaultmodel_core.sh --daemon
+
+# Graceful shutdown
+ExecStop=/bin/bash -c 'docker stop $(docker ps -q --filter label=modelvault=true) || true'
+
+# Restart policy
+Restart=on-failure
+RestartSec=30
+StartLimitInterval=200
+StartLimitBurst=5
+
+# Security hardening
+PrivateTmp=true
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/modelvault/logs /opt/modelvault/data
+
+# Resource limits
+MemoryLimit=8G
+CPUQuota=80%
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=modelvault
+
+[Install]
+WantedBy=multi-user.target

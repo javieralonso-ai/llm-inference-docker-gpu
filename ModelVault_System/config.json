@@ -1,0 +1,38 @@
+{
+  "model": {
+    "name": "mistral",
+    "options": {
+      "temperature": 0.7,
+      "top_p": 0.9,
+      "num_predict": 250,
+      "stop": ["You:", "User:", "Human:", "Assistant:"]
+    }
+  },
+  "available_models": {
+    "tinyllama": {
+      "description": "Tiny but fast model (1.1B)",
+      "size": "637MB",
+      "speed": "very fast"
+    },
+    "mistral": {
+      "description": "Excellent balance of performance (7B)",
+      "size": "4.1GB",
+      "speed": "fast"
+    },
+    "llama2:7b": {
+      "description": "Meta's powerful model (7B)",
+      "size": "3.8GB",
+      "speed": "fast"
+    },
+    "phi3:mini": {
+      "description": "Microsoft's efficient model (3.8B)",
+      "size": "2.3GB",
+      "speed": "very fast"
+    },
+    "gemma:2b": {
+      "description": "Google's small but capable (2B)",
+      "size": "1.4GB",
+      "speed": "very fast"
+    }
+  }
+}

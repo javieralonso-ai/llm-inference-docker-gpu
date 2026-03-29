@@ -1,0 +1,10 @@
+logs/
+*.zip
+*.mp4
+*.mkv
+*.PNG
+*.pdf
+.current_session
+/tmp/
+__pycache__/
+*.pyc

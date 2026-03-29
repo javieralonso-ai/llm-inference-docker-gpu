@@ -1,0 +1,23 @@
+{
+  "model": "mistral",
+  "prompt": "What is ModelVault and how does it help enterprises?",
+  "response": " ModelVault is a platform developed by DataRobot, a leader in automated machine learning. It's designed to help enterprises manage, deploy, and scale AI models across their organization.\n\nHere are some key features of ModelVault:\n\n1. **Model Management**: ModelVault allows organizations to store, version, and track their machine learning models. This helps in maintaining transparency and accountability in the model lifecycle.\n\n2. **Deployment and Orchestration**: Once a model is ready, it can be deployed into production environments using ModelVault. The platform also handles model orchestration, ensuring that models are running as intended within the specified infrastructure.\n\n3. **Monitoring and",
+  "usage": {
+    "prompt_tokens": 9,
+    "completion_tokens": 98,
+    "total_tokens": 107
+  },
+  "metadata": {
+    "processing_time_ms": 3358,
+    "timestamp": "2025-07-27T10:48:36.208536+00:00",
+    "inference_mode": "real",
+    "temperature": 0.7,
+    "max_tokens": 150,
+    "model_info": {
+      "name": "mistral",
+      "eval_count": 150,
+      "eval_duration": 3330597197
+    },
+    "version": "2.0.0"
+  }
+}
