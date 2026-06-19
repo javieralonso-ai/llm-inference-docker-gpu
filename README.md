@@ -136,7 +136,7 @@ A few decisions worth flagging for reviewers:
 Built solo by [Javier Alonso](https://github.com/javieralonso-ai), AI Engineer based in Valladolid (Spain).
 Two decades operating production infrastructure 24/7, now applying that discipline to AI systems.
 
-📫 jzeroprimeai@gmail.com · [LinkedIn](https://linkedin.com/in/javieralonso-ai)
+📫 jzeroprime@gmail.com · [LinkedIn](https://linkedin.com/in/javieralonso-ai)
 
 ---
 
