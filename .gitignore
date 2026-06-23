@@ -3,8 +3,14 @@ logs/
 *.mp4
 *.mkv
 *.PNG
+*.png
+*.log
 *.pdf
 .current_session
 /tmp/
 __pycache__/
 *.pyc
+.env
+.env.*
+benchmark_results_*.json
+**/data/output.json

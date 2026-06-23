@@ -1,145 +1,141 @@
-# LLM Inference on Docker + GPU
+# Local LLM Inference on Docker + GPU
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/)
-[![Docker](https://img.shields.io/badge/docker-ready-blue.svg)](https://www.docker.com/)
-[![CUDA](https://img.shields.io/badge/CUDA-12.x-76B900.svg)](https://developer.nvidia.com/cuda-toolkit)
-[![Ollama](https://img.shields.io/badge/Ollama-Mistral_7B-black.svg)](https://ollama.ai/)
+[![Docker](https://img.shields.io/badge/docker-required-blue.svg)](https://www.docker.com/)
+[![NVIDIA](https://img.shields.io/badge/NVIDIA-GPU%20optional-76B900.svg)](https://developer.nvidia.com/cuda-toolkit)
+[![Ollama](https://img.shields.io/badge/Ollama-local%20LLM-black.svg)](https://ollama.com/)
 
-On-premise LLM inference system with Docker, Ollama, GPU monitoring, structured logging and HTTP telemetry. Built as a technical assessment for **ModelVault** (on-premise AI appliances startup) — delivered 3 days ahead of deadline with **2× the requested scope**.
+Functional prototype and case study for local LLM inference on a GPU-enabled Linux machine.
 
-> *"I believe you would be a great fit for our team."* — ModelVault Hiring Manager
+This repository started as a systems take-home style assignment and was extended into a local inference demo with Ollama, Docker, GPU diagnostics, a CLI, JSONL logs, and HTTP telemetry. It is intended as a reviewer-friendly technical artifact, not as an official product or enterprise production platform.
 
----
+## What This Demonstrates
 
-## Context
-
-ModelVault asked for a ~2 hour bootstrap script with Docker + logging, plus **one** of three optional bonuses.
-I delivered **two complete projects**: the original exercise with **all three bonuses**, and a fully working LLM inference system on top of it.
-
----
-
-## What's Inside
-
-### `MiniVault_stub/` — The assignment + 3/3 bonuses
-
-| Feature | Status |
+| Area | Evidence in this repo |
 |---|---|
-| GPU detection (`nvidia-smi`, Docker, CUDA) | ✅ |
-| Docker container with structured JSONL logging | ✅ |
-| **Bonus 1** — GPU health monitoring (temp / mem / util as JSON) | ✅ |
-| **Bonus 2** — systemd service with security hardening | ✅ |
-| **Bonus 3** — HTTP telemetry server (`POST /telemetry`, `GET /health`, `GET /metrics`) | ✅ |
+| Local LLM inference | `ModelVault_System` runs Ollama/Mistral through a Docker-based workflow |
+| GPU-aware operations | `nvidia-smi` diagnostics, GPU health JSON, terminal dashboard |
+| Docker/Linux systems work | Docker image, container startup, host diagnostics, shell orchestration |
+| CLI experience | Interactive Python CLI for running the pipeline, viewing logs, and chatting |
+| Observability | JSONL execution logs, inference logs, telemetry endpoint, sample evidence |
+| Operational thinking | Session directories, health checks, lock intent, systemd design draft |
 
-### `ModelVault_System/` — Beyond requirements
+## Repository Layout
 
-A real LLM inference platform built on top of the bootstrap:
-
-- **Mistral 7B** inference via **Ollama** in Docker
-- **Interactive CLI chat** interface
-- **Live GPU dashboard** in the terminal (temperature, memory, utilisation, power)
-- **Multi-model benchmark** suite (latency, throughput, tokens/s)
-- **Semaphore-based concurrency control** to prevent GPU contention
-- **Structured logging telemetry** with JSONL events
-
----
-
-## Architecture
-
-```mermaid
-flowchart LR
-    User([User]) -->|prompt| CLI[Interactive CLI]
-    CLI -->|HTTP| Ollama[Ollama Container<br/>Mistral 7B]
-    Ollama -->|inference| GPU[NVIDIA GPU<br/>CUDA]
-
-    GPU -->|metrics| Monitor[GPU Health Monitor<br/>nvidia-smi]
-    Monitor -->|JSON| Telemetry[HTTP Telemetry Server<br/>/telemetry /health /metrics]
-    Monitor -->|live| Dashboard[Terminal Dashboard]
-
-    CLI -->|events| Logger[Structured JSONL Logger]
-    Telemetry -->|events| Logger
-    Logger -->|append| LogFile[(session.jsonl)]
-
-    Sema[Concurrency Semaphore] -.->|gates| Ollama
-
-    classDef container fill:#0db7ed,stroke:#066,color:#fff
-    classDef gpu fill:#76B900,stroke:#3a5a00,color:#fff
-    classDef obs fill:#f4a261,stroke:#7a4f1a,color:#000
-    class Ollama,CLI container
-    class GPU,Monitor gpu
-    class Telemetry,Dashboard,Logger,LogFile obs
-```
-
----
+| Path | Purpose | Status |
+|---|---|---|
+| `MiniVault_stub/` | Baseline assignment implementation: diagnostics, simulated inference, structured logging, and optional systems features | Demonstration baseline |
+| `ModelVault_System/` | Extended local LLM prototype with Docker, Ollama, CLI, GPU monitoring, telemetry, and benchmark helpers | Functional local demo |
+| `docs/case-study.md` | Public case study with context, design decisions, evidence, and limitations | Reviewer entry point |
+| `docs/evidence/` | Sanitized execution samples and clean visual snapshots | Safe to review publicly |
 
 ## Quickstart
 
-**Requirements:** Ubuntu 22.04+, Docker, NVIDIA driver + Container Toolkit, Python 3.10+.
+Requirements:
+
+- Ubuntu 22.04+ or WSL2 Ubuntu
+- Python 3.10+
+- Docker running
+- NVIDIA driver and NVIDIA Container Toolkit for GPU acceleration
+- Internet access on first run to download the Ollama model
+
+Clone and install host-side Python dependencies:
 
 ```bash
-# 1. Clone
 git clone https://github.com/javieralonso-ai/llm-inference-docker-gpu.git
 cd llm-inference-docker-gpu
-
-# 2. Run the assessment bootstrap (with all 3 bonuses)
-cd MiniVault_stub
-./bootstrap.sh
-
-# 3. Spin up the full inference system
-cd ../ModelVault_System
-docker compose up -d
-python cli_chat.py
+python3 -m pip install -r requirements.txt
 ```
 
-Each subfolder ships its own detailed README with options, env vars and troubleshooting.
+Run the baseline assignment implementation:
 
----
+```bash
+cd MiniVault_stub
+find . -name "*.sh" -exec chmod +x {} \;
+./vaultmodel_core.sh
+```
 
-## Tech Stack
+Run the extended local inference demo:
 
-| Layer | Choice |
+```bash
+cd ../ModelVault_System
+find . -name "*.sh" -exec chmod +x {} \;
+python3 vaultmodel_cli_basic.py
+```
+
+The extended demo will:
+
+- run OS, Docker, Python, and GPU diagnostics;
+- start the local inference pipeline;
+- run Ollama through the Docker workflow;
+- write session logs under `logs/sessions/`;
+- expose telemetry during the run;
+- open a CLI menu for log inspection and chat.
+
+## Evidence
+
+The raw local logs are intentionally not committed because they include machine paths and environment-specific details. Sanitized samples are included instead:
+
+- [Case study](docs/case-study.md)
+- [Evidence index](docs/evidence/README.md)
+- [Execution JSONL sample](docs/evidence/execution.sample.jsonl)
+- [GPU health sample](docs/evidence/gpu_health.sample.json)
+- [Telemetry JSONL sample](docs/evidence/telemetry.sample.jsonl)
+- [System report sample](docs/evidence/system_report.sample.md)
+
+Clean visual snapshots:
+
+![Pipeline run](docs/evidence/pipeline-run.svg)
+
+![Telemetry summary](docs/evidence/telemetry-summary.svg)
+
+## Tested Evidence
+
+The public evidence in this repo is based on a local run with:
+
+| Component | Observed value |
 |---|---|
-| Language | Python 3.10+, Bash |
-| LLM runtime | Ollama (Mistral 7B) |
-| Containers | Docker + Docker Compose |
-| GPU | NVIDIA CUDA 12.x, `nvidia-smi`, NVIDIA Container Toolkit |
-| Service mgmt | systemd (with hardening: `NoNewPrivileges`, `ProtectSystem`, `PrivateTmp`) |
-| Observability | JSONL structured logs, HTTP telemetry endpoints |
-| Concurrency | Python semaphores |
+| OS | Ubuntu 24.04.2 LTS on WSL2 |
+| GPU | NVIDIA GeForce RTX 4060 Ti |
+| Docker | 28.3.2 |
+| Python | 3.12.3 |
+| CUDA reported by driver | 12.9 |
+| Runtime | Ollama with Mistral |
+| Inference evidence | Successful Docker workflow, real output file, JSONL logs, telemetry events |
 
----
+## Honest Scope
 
-## Hardware Tested
+This is:
 
-- **GPU**: NVIDIA RTX 5090 32 GB + RTX 5070 Ti 16 GB
-- **CPU**: AMD Ryzen 9 9950X / Ryzen 7 9700X
-- **RAM**: 160 GB DDR5
-- **OS**: Ubuntu 22.04 LTS
+- a technical assessment reconstruction;
+- a functional local prototype;
+- a demonstration of systems thinking around local AI inference;
+- a portfolio artifact for AI infrastructure, LLMOps, and GPU-aware tooling.
 
-The system is designed to scale down: it also runs on a single mid-range GPU (≥ 8 GB VRAM) with smaller models.
+This is not:
 
----
+- an official ModelVault product;
+- affiliated with or endorsed by ModelVault;
+- a production enterprise platform;
+- a complete multi-GPU scheduler;
+- a hardened network service;
+- a Kubernetes or cloud deployment.
 
-## Design Notes
+## Roadmap
 
-A few decisions worth flagging for reviewers:
+Short next steps:
 
-1. **Telemetry as a separate process**, not embedded in the inference path — keeps the hot path clean and lets observability fail without taking down inference.
-2. **JSONL over a database** for the assignment scope — append-only, greppable, trivially shipped to any log pipeline (Loki, Vector, ELK).
-3. **Semaphore at the application layer**, not just Ollama's queue — gives explicit back-pressure and lets the caller decide between blocking and rejecting.
-4. **systemd hardening** even for a take-home — production hygiene shouldn't be a checkbox enabled later.
+- add a minimal CI workflow for JSON/JSONL, Python syntax, and shell syntax checks;
+- replace the current shell lock with a verified `flock`-based implementation;
+- either implement the baseline Docker stub end-to-end or document it strictly as host simulation;
+- redesign and test the systemd unit before presenting it as deployable;
+- add a fresh GPU run with updated hardware only when reproducible evidence exists.
 
----
+## Author
 
-## About
-
-Built solo by [Javier Alonso](https://github.com/javieralonso-ai), AI Engineer based in Valladolid (Spain).
-Two decades operating production infrastructure 24/7, now applying that discipline to AI systems.
-
-📫 jzeroprime@gmail.com · [LinkedIn](https://linkedin.com/in/javieralonso-ai)
-
----
+Built by Javier Alonso as an AI systems and local inference portfolio project.
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT. See [LICENSE](LICENSE).

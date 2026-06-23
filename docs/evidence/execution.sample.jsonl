@@ -1,0 +1,14 @@
+{"timestamp":"2025-07-27T10:48:26Z","level":"INFO","component":"core","message":"VaultModel IA Orchestrator started"}
+{"timestamp":"2025-07-27T10:48:28Z","level":"SUCCESS","component":"core","message":"Telemetry server started on port 8082"}
+{"timestamp":"2025-07-27T10:48:29Z","level":"SUCCESS","component":"phase1_diagnose","message":"OS detected: Ubuntu 24.04.2 LTS"}
+{"timestamp":"2025-07-27T10:48:29Z","level":"SUCCESS","component":"phase1_diagnose","message":"Docker installed: version 28.3.2"}
+{"timestamp":"2025-07-27T10:48:29Z","level":"SUCCESS","component":"phase1_diagnose","message":"Docker daemon running"}
+{"timestamp":"2025-07-27T10:48:29Z","level":"SUCCESS","component":"phase1_diagnose","message":"GPU found: NVIDIA GeForce RTX 4060 Ti"}
+{"timestamp":"2025-07-27T10:48:30Z","level":"SUCCESS","component":"phase1_diagnose","message":"All system checks passed"}
+{"timestamp":"2025-07-27T10:48:30Z","level":"INFO","component":"phase2_inference","message":"Starting model inference pipeline"}
+{"timestamp":"2025-07-27T10:48:30Z","level":"SUCCESS","component":"phase2_inference","message":"Inference lock acquired"}
+{"timestamp":"2025-07-27T10:48:31Z","level":"INFO","component":"phase2_inference","message":"Running with GPU support"}
+{"timestamp":"2025-07-27T10:48:36Z","level":"SUCCESS","component":"phase2_inference","message":"Docker container executed successfully"}
+{"timestamp":"2025-07-27T10:48:36Z","level":"SUCCESS","component":"phase2_inference","message":"Real inference output validated"}
+{"timestamp":"2025-07-27T10:48:37Z","level":"SUCCESS","component":"gpu_monitor","message":"GPU health check completed - status: warning"}
+{"timestamp":"2025-07-27T10:48:37Z","level":"INFO","component":"core","message":"Pipeline finished successfully"}

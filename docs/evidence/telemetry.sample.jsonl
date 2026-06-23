@@ -1,0 +1,2 @@
+{"level":"WARNING","component":"gpu_monitor","message":"GPU health check - status: warning","received_at":"2025-07-27T12:48:37"}
+{"level":"SUCCESS","component":"pipeline","message":"Pipeline completed successfully","received_at":"2025-07-27T12:48:37"}

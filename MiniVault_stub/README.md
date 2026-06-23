@@ -30,7 +30,7 @@ A complete implementation of ModelVault's technical assessment requirements for 
 - **Modular Components**: Each script handles a specific responsibility
 - **Graceful Degradation**: Works without Docker/GPU but leverages them when available
 - **Comprehensive Logging**: Every operation is tracked in structured JSONL format
-- **Enterprise Ready**: Includes systemd service, telemetry, and monitoring
+- **Operations-oriented**: Includes a systemd service draft, telemetry, and monitoring
 
 ## 🚀 Quick Start
 
@@ -102,7 +102,7 @@ MiniVault_stub/
 
 ### Bonus Features (3/3) 
 1. **GPU Health Monitoring** ✓ - Real-time JSON output
-2. **Service Management** ✓ - Complete systemd configuration
+2. **Service Management** ✓ - systemd configuration draft
 3. **Mock Telemetry** ✓ - HTTP server with POST endpoint
 
 ## 🔄 Execution Flow
@@ -208,7 +208,7 @@ Real-time GPU monitoring with comprehensive metrics:
 ```
 
 ### ✅ 2. Systemd Service Management
-Production-ready service configuration:
+Service configuration draft:
 ```bash
 # Install as system service
 sudo ./systemd/install_service.sh
@@ -257,7 +257,7 @@ curl -X POST http://localhost:8080/telemetry -d '{"level":"INFO","message":"test
 ```json
 {
   "model": "vaultmodel-llama-7b",
-  "response": "ModelVault is an enterprise-grade on-premise AI appliance...",
+  "response": "ModelVault is a local on-premise AI prototype...",
   "usage": {
     "prompt_tokens": 12,
     "completion_tokens": 147,
@@ -292,7 +292,7 @@ The GPU monitor can be extended to track:
 ### 1. **Hybrid Bash/Python Architecture**
 - **Bash** for system-level operations and orchestration (natural fit for Linux environments)
 - **Python** for complex data processing, HTTP servers, and GPU monitoring
-- This mirrors real production deployments where shell scripts handle deployment/startup
+- This resembles common Linux startup patterns where shell scripts handle deployment/startup
 
 ### 2. **Container Simulation Approach**
 - Simulates container execution as requested in the assessment
@@ -382,8 +382,8 @@ This implementation draws from real-world experience with:
 - **Ollama**: Local LLM deployment and management
 - **Docker**: Containerized inference workloads  
 - **NVIDIA Stack**: GPU monitoring and optimization
-- **Enterprise Logging**: Structured logging for production systems
-- **Service Management**: systemd for reliable daemon operations
+- **Structured Logging**: JSONL logs for review and troubleshooting
+- **Service Management**: systemd service design for reliable daemon operations
 
 The architecture reflects best practices from deploying AI systems at scale while maintaining the flexibility needed for on-premise environments.
 
@@ -391,4 +391,4 @@ The architecture reflects best practices from deploying AI systems at scale whil
 
 **Javier Alonso** - AI Systems Designer
 
-*Built with an AI-native approach using Cursor and Claude Code to demonstrate modern development practices while delivering production-quality infrastructure code.*
+*Built with an AI-native approach using Cursor and Claude Code to demonstrate modern development practices while delivering reviewable infrastructure code.*

@@ -1,0 +1,59 @@
+name: validate
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  static-checks:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate JSON and JSONL
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          paths = [
+              Path("MiniVault_stub/data/input.json"),
+              Path("ModelVault_System/data/input.json"),
+              Path("ModelVault_System/config.json"),
+              Path("docs/evidence/gpu_health.sample.json"),
+          ]
+
+          for path in paths:
+              with path.open("r", encoding="utf-8") as handle:
+                  json.load(handle)
+              print(f"valid json: {path}")
+
+          for path in Path("docs/evidence").glob("*.jsonl"):
+              with path.open("r", encoding="utf-8") as handle:
+                  for line_no, line in enumerate(handle, 1):
+                      if line.strip():
+                          json.loads(line)
+              print(f"valid jsonl: {path}")
+          PY
+
+      - name: Validate Python syntax
+        run: |
+          python3 -m compileall MiniVault_stub ModelVault_System
+
+      - name: Validate shell syntax
+        run: |
+          while IFS= read -r -d '' file; do
+            bash -n "$file"
+            echo "valid shell: $file"
+          done < <(find MiniVault_stub ModelVault_System -name "*.sh" -print0)
+
+      - name: Validate documented entrypoints
+        run: |
+          test -f requirements.txt
+          test -f MiniVault_stub/vaultmodel_core.sh
+          test -f ModelVault_System/vaultmodel_cli_basic.py
+          test -f docs/case-study.md
+          test -f docs/evidence/execution.sample.jsonl
+          test -f docs/evidence/gpu_health.sample.json

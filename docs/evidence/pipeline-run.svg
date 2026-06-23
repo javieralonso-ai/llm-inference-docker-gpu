@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="520" viewBox="0 0 980 520" role="img" aria-labelledby="title desc">
+  <title id="title">Sanitized pipeline run snapshot</title>
+  <desc id="desc">Clean terminal-style snapshot of a successful local LLM inference pipeline.</desc>
+  <rect width="980" height="520" fill="#0f1117"/>
+  <rect x="24" y="24" width="932" height="472" rx="8" fill="#151923" stroke="#2b3245"/>
+  <text x="48" y="66" fill="#e5e7eb" font-family="Consolas, monospace" font-size="20">VaultModel IA Orchestrator</text>
+  <text x="48" y="108" fill="#22c55e" font-family="Consolas, monospace" font-size="17">[core] Telemetry server started on port 8082</text>
+  <text x="48" y="138" fill="#22c55e" font-family="Consolas, monospace" font-size="17">[phase1_diagnose] OS detected: Ubuntu 24.04.2 LTS</text>
+  <text x="48" y="168" fill="#22c55e" font-family="Consolas, monospace" font-size="17">[phase1_diagnose] Docker daemon running</text>
+  <text x="48" y="198" fill="#22c55e" font-family="Consolas, monospace" font-size="17">[phase1_diagnose] GPU found: NVIDIA GeForce RTX 4060 Ti</text>
+  <text x="48" y="228" fill="#22c55e" font-family="Consolas, monospace" font-size="17">[phase1_diagnose] All system checks passed</text>
+  <text x="48" y="270" fill="#93c5fd" font-family="Consolas, monospace" font-size="17">[phase2_inference] Starting Docker container with Ollama</text>
+  <text x="48" y="300" fill="#93c5fd" font-family="Consolas, monospace" font-size="17">[phase2_inference] Running with GPU support</text>
+  <text x="48" y="330" fill="#22c55e" font-family="Consolas, monospace" font-size="17">[phase2_inference] Docker container executed successfully</text>
+  <text x="48" y="360" fill="#22c55e" font-family="Consolas, monospace" font-size="17">[phase2_inference] Real inference output validated</text>
+  <text x="48" y="402" fill="#facc15" font-family="Consolas, monospace" font-size="17">[gpu_monitor] GPU health check completed - status: warning</text>
+  <text x="48" y="432" fill="#22c55e" font-family="Consolas, monospace" font-size="17">[core] Pipeline finished successfully</text>
+  <text x="48" y="468" fill="#8b949e" font-family="Consolas, monospace" font-size="14">Sanitized public snapshot. Local paths and private context removed.</text>
+</svg>

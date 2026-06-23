@@ -1,0 +1,20 @@
+{
+  "timestamp": "2025-07-27T10:48:36Z",
+  "status": "warning",
+  "gpu": {
+    "name": "NVIDIA GeForce RTX 4060 Ti",
+    "temperature_celsius": 52,
+    "memory_total_mb": 8188,
+    "memory_used_mb": 7643,
+    "memory_free_mb": 307,
+    "utilization_percent": 3,
+    "power_draw_watts": 50.44,
+    "driver_version": "576.52",
+    "cuda_version": "12.9"
+  },
+  "health_checks": {
+    "temperature": "normal",
+    "memory": "warning",
+    "memory_usage_percent": 93.34
+  }
+}

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="420" viewBox="0 0 980 420" role="img" aria-labelledby="title desc">
+  <title id="title">Telemetry evidence snapshot</title>
+  <desc id="desc">Clean terminal-style snapshot of telemetry and GPU evidence.</desc>
+  <rect width="980" height="420" fill="#0f1117"/>
+  <rect x="24" y="24" width="932" height="372" rx="8" fill="#151923" stroke="#2b3245"/>
+  <text x="48" y="68" fill="#e5e7eb" font-family="Consolas, monospace" font-size="20">Telemetry and GPU Evidence</text>
+  <text x="48" y="112" fill="#93c5fd" font-family="Consolas, monospace" font-size="17">GET /health  - telemetry server healthy</text>
+  <text x="48" y="142" fill="#93c5fd" font-family="Consolas, monospace" font-size="17">POST /telemetry - gpu_monitor event accepted</text>
+  <text x="48" y="184" fill="#facc15" font-family="Consolas, monospace" font-size="17">GPU: NVIDIA GeForce RTX 4060 Ti</text>
+  <text x="48" y="214" fill="#facc15" font-family="Consolas, monospace" font-size="17">Temperature: 52 C | Memory: 7643 / 8188 MB | CUDA: 12.9</text>
+  <text x="48" y="256" fill="#22c55e" font-family="Consolas, monospace" font-size="17">Event 1: GPU health check recorded as JSON</text>
+  <text x="48" y="286" fill="#22c55e" font-family="Consolas, monospace" font-size="17">Event 2: Pipeline completed successfully</text>
+  <text x="48" y="328" fill="#8b949e" font-family="Consolas, monospace" font-size="14">Sanitized public snapshot. Raw session logs are intentionally excluded.</text>
+</svg>
