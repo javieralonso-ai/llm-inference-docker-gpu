@@ -1,5 +1,6 @@
 # Local LLM Inference on Docker + GPU
 
+[![Validate repository](https://github.com/javieralonso-ai/llm-inference-docker-gpu/actions/workflows/validate.yml/badge.svg)](https://github.com/javieralonso-ai/llm-inference-docker-gpu/actions/workflows/validate.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/)
 [![Docker](https://img.shields.io/badge/docker-required-blue.svg)](https://www.docker.com/)
@@ -126,7 +127,7 @@ This is not:
 
 Short next steps:
 
-- add a minimal CI workflow for JSON/JSONL, Python syntax, and shell syntax checks;
+- extend CI with link checks and a lightweight smoke test for documented commands;
 - replace the current shell lock with a verified `flock`-based implementation;
 - either implement the baseline Docker stub end-to-end or document it strictly as host simulation;
 - redesign and test the systemd unit before presenting it as deployable;
